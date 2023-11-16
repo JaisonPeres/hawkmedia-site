@@ -1,14 +1,11 @@
 import { SiteStages } from '@/hooks/types';
-import useSite from '@/hooks/useSite';
 import { MetadataRoute } from 'next';
+import { app } from '@/config'
  
 export default async function robots(): Promise<MetadataRoute.Robots> {
 
-  const host = useSite.host()
 
-  const { pages, stage } = await useSite.fetchSite()
-
-  if (stage === SiteStages.DEV) {
+  if (app.stage === SiteStages.DEV || app.stage === SiteStages.LOCAL) {
     return {
       rules: {
         userAgent: '*',
@@ -18,16 +15,11 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     }
   }
 
-  const disallowedPages = pages
-    .filter(page => page.disallowedRobots)
-    .map(page => `/${page.path}/`)
-
   return {
     rules: [
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: disallowedPages,
       },
       {
         userAgent: 'DuckDuckBot',
@@ -36,9 +28,8 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
       {
         userAgent: '*',
         allow: '/',
-        disallow: disallowedPages,
       },
     ],
-    sitemap: `https://${host}/sitemap.xml`,
+    sitemap: `https://${app.host}/sitemap.xml`,
   };
 }

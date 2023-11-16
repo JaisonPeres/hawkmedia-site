@@ -1,16 +1,24 @@
-import useSite from '@/hooks/useSite';
 import { MetadataRoute } from 'next';
+import { app } from '@/config'
 
  
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const host = useSite.host()
-  const site = await useSite.fetchSite()
-  const baseUrl = `https://${host}`
+  const baseUrl = `https://${app.host}`
 
-  return site.pages
-    .filter((page) => !page.private)
-    .map(page => ({
-      url: `${baseUrl}/${page.path === '/' ? '' : page.path}`,
-      lastModified: page.updatedAt || page.createdAt || new Date().toISOString(),
-    }))
+  const pages = [
+    {
+      url: `${baseUrl}/`,
+      lastModified: new Date().toISOString(),
+    },
+    {
+      url: `${baseUrl}/sobre`,
+      lastModified: new Date().toISOString(),
+    },
+    {
+      url: `${baseUrl}/contato`,
+      lastModified: new Date().toISOString(),
+    },
+  ]
+
+  return pages
 }

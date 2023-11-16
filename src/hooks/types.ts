@@ -9,7 +9,8 @@ import { SectionChapterProps } from "@/components/modules/sections/SectionChapte
 
 export enum SiteStages {
   DEV = 'DEV',
-  PROD = 'PROD'
+  PROD = 'PROD',
+  LOCAL = 'LOCAL'
 }
 
 export enum SiteLanguages {

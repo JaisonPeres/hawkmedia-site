@@ -2,7 +2,6 @@ import GoogleAnalytics from '@/components/modules/analytics/GoogleAnalytics'
 import { app } from '@/config'
 import { SiteLanguages } from '@/hooks/types'
 import useMetadata from '@/hooks/useMetadata'
-import { PageOnNav } from '@/hooks/useSite'
 import { Inter } from 'next/font/google'
 import SiteHeader from '../components/basic/SiteHeader'
 import './globals.css'
@@ -19,8 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  // const site = await useSite.fetchSite()
-  const navigation: PageOnNav[] = [
+  const navigation = [
     { title: 'Home', path: '/' },
     { title: 'Serviços', path: 'servicos' },
     { title: 'Sobre', path: 'sobre' },

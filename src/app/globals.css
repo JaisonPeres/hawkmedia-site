@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-rgb: 14, 11, 20;
+  --primary: rgb(34, 21, 46);
+  --secondary: rgb(73, 45, 124);
+  --gray-100: rgb(249, 250, 251);
+  --gray-600: rgb(75, 85, 99);
+  --gray-700: rgb(55, 65, 81);
+  --gray-800: rgb(31, 41, 55);
+  --gray-900: rgb(17, 24, 39);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--gray-900);
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--gray-700);
+  border-radius: 0;
+  border: 0px solid var(--gray-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 14, 11, 20;
+  }
+}
+
+.bg-backdrop-filter-dark {
+  background-color: rgba(var(--background-rgb), 0.85);
+  backdrop-filter: blur(10px);
+}
+
+button:focus-visible {
+  outline: none
+}
+
+.loader-backdrop {
+  background-color: rgba(0,0,0, 0.85);
+}
+
+.loader {
+  border: 3px solid rgba(255,255,255,.1);
+  border-top: 3px solid var(--secondary);
+	-webkit-animation: spinner 1.5s linear infinite;
+	animation: spinner 1.2s linear infinite;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+
+@-webkit-keyframes spinner {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
